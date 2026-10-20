@@ -153,20 +153,20 @@ and if you don't know the answer, just say "I don't know."""
 
 # to get proper explantion see rag_pipeline.md
 def demo_rag_with_sources():
-
+    #the diff between demo_rag and this is that here we show the sources of the chunks
     vectorstore = create_kb()
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
     prompt = ChatPromptTemplate.from_template(
         """
-Answer the question based on the context below. Include which sources you used.
+        Answer the question based on the context below. Include which sources you used.
 
-Context:
-{context}
+        Context:
+        {context}
 
-Question: {question}
+        Question: {question}
 
-Answer (include sources):"""
+        Answer (include sources):"""
     )
 
     def format_docs_with_sources(docs):
@@ -192,6 +192,8 @@ Answer (include sources):"""
     print(f"A: {answer}")
 
 def demo_structured_rag():
+    #here the diff is that here the llm returns the output in a structured format
+    # use this only when you need the output in a structured format
     """RAG with structured output."""
 
     vectorstore = create_kb()
@@ -241,6 +243,7 @@ Provide a structured response."""
 
 # Exercise: Build a document Q&A system
 def exercise_document_qa():
+    #here we can give our own document as input and then we can ask questions about it
     """
     EXERCISE: Build a complete document Q&A system that:
     1. Takes a text document as input
